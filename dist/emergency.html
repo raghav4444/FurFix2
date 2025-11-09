@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animal Emergency Location</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .hidden {
+        display: none;
+      }
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      /* Image preview */
+      #imagePreview {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+        margin-top: 10px;
+      }
+      #uploadedImage {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-top: 10px;
+      }
+      /* Map container */
+      #map {
+        height: 300px;
+        width: 100%;
+        margin-top: 10px;
+      }
+      /* Dark theme */
+      body {
+        background-color: #1a202c;
+        color: #cbd5e0;
+      }
+      .form-container {
+        background-color: #2d3748;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      .form-container label {
+        color: #a0aec0;
+      }
+      .form-container input,
+      .form-container button {
+        background-color: #4a5568;
+        color: #e2e8f0;
+      }
+      .form-container input::placeholder {
+        color: #a0aec0;
+      }
+      .form-container button:hover {
+        background-color: #2b6cb0;
+      }
+      .location {
+        background-color: #2d3748;
+      }
+    </style>
+    <!-- Leaflet.js for map display -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <!-- Leaflet Control Geocoder CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+  </head>
+  <body class="bg-gray-900 font-sans">
+    <header class="mt-4 bg-orange-500 text-white p-4 text-center">
+      <h2 class="text-4xl mb-0" style="text-align: center">
+        Report an Animal Accident
+      </h2>
+    </header>
+
+    <main class="p-8">
+      <!-- Form Start -->
+      <div
+        style="margin: 0 auto; width: 1000px; justify-content: center"
+        class="form-container"
+      >
+        <form
+          id="locationForm"
+          class="mb-4"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="Yea19487f-4c37-4a25-af3d-18a0fff99a0c"
+          />
+          <input
+            type="hidden"
+            name="redirect"
+            value="https://web3forms.com/success"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="New Animal Accident Report"
+          />
+          <input
+            type="hidden"
+            name="from_name"
+            value="Animal Emergency Location"
+          />
+          <input type="hidden" name="to_email" value="furfix4444@gmail.com" />
+
+          <label for="name" class="block mb-2">Your Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="border border-gray-300 p-2 rounded w-full mb-4"
+            placeholder="Ex - Raghav Singh"
+          />
+
+          <label for="email" class="block mb-2">Your Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="border border-gray-300 p-2 rounded w-full mb-4"
+            placeholder="Ex - sura123@gmail.com"
+          />
+
+          <label for="mobile" class="block mb-2">Mobile Number:</label>
+          <input
+            type="tel"
+            id="mobile"
+            name="mobile"
+            required
+            pattern="[0-9]{10}"
+            placeholder="10-digit mobile number"
+            class="border border-gray-300 p-2 rounded w-full mb-4"
+          />
+
+          <label for="location" class="block mb-2">Location:</label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            required
+            class="border border-gray-300 p-2 rounded w-full mb-4"
+            placeholder="Enter location"
+          />
+
+          <button
+            type="button"
+            id="currentLocationBtn"
+            class="bg-green-500 hover:bg-green-700 text-white p-2 rounded transition duration-300 mb-4"
+          >
+            Get Current Location
+          </button>
+          <!-- 
+          <label for="message" class="block mb-2">Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            class="border border-gray-300 p-2 rounded w-full mb-4"
+          ></textarea> -->
+
+          <label for="image" class="block mb-2"
+            >Upload Accident Image (Optional):</label
+          >
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            class="border border-gray-300 p-2 rounded w-full mb-4"
+          />
+
+          <img id="imagePreview" class="hidden" alt="Accident Image Preview" />
+
+          <button
+            type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded transition duration-300"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <!-- Form End -->
+
+      <!-- Display Accident Info -->
+      <div
+        class="location bg-white p-4 rounded shadow-md hidden fade-in"
+        id="locationDisplay"
+      >
+        <h2 class="text-xl mb-2">Accident Details:</h2>
+        <p><strong>Name:</strong> <span id="nameText"></span></p>
+        <p><strong>Mobile:</strong> <span id="mobileText"></span></p>
+        <p><strong>Latitude:</strong> <span id="latitudeText"></span></p>
+        <p><strong>Longitude:</strong> <span id="longitudeText"></span></p>
+        <p><strong>Accident Image:</strong></p>
+        <img id="uploadedImage" class="hidden" alt="Uploaded Accident Image" />
+      </div>
+      <script>
+        document
+          .getElementById("locationForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const mobile = document.getElementById("mobile").value;
+            const location = document.getElementById("location").value;
+            const latitude = document.getElementById("latitudeText").innerText;
+            const longitude =
+              document.getElementById("longitudeText").innerText;
+
+            const emailBody = `
+        Name: ${name}\n
+        Mobile: ${mobile}\n
+        Location: ${location}\n
+        Latitude: ${latitude}\n
+        Longitude: ${longitude}
+          `;
+
+            window.open(
+              `mailto:furfix4444@gmail.com?subject=New Animal Accident Report&body=${encodeURIComponent(
+                emailBody
+              )}`
+            );
+          });
+      </script>
+
+      <!-- <p><strong>Location:</strong> <span id="locationText"></span></p> -->
+      <!-- Map Container -->
+      <div id="map"></div>
+    </main>
+
+    <!-- Leaflet.js library for map -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Leaflet Control Geocoder for search and autocomplete -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+
+    <script>
+      // Initialize the map and geocoder
+      var map = L.map("map").setView([26.8467, 80.9462], 13); // Coordinates for Uttar Pradesh, India
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      // Initialize geocoder for autocomplete
+      var geocoder = L.Control.geocoder({
+        defaultMarkGeocode: false,
+      })
+        .on("markgeocode", function (e) {
+          var bbox = e.geocode.bbox;
+          var poly = L.polygon([
+            [bbox.getSouthWest().lat, bbox.getSouthWest().lng],
+            [bbox.getNorthWest().lat, bbox.getNorthWest().lng],
+            [bbox.getNorthEast().lat, bbox.getNorthEast().lng],
+            [bbox.getSouthEast().lat, bbox.getSouthEast().lng],
+          ]).addTo(map);
+          map.fitBounds(poly.getBounds());
+        })
+        .addTo(map);
+
+      // Form submission logic
+      document
+        .getElementById("locationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert(
+            "thanks for giving your detail we will connect you as soon as possible"
+          );
+
+          // Get input values
+          const loc = document.getElementById("locationDisplay");
+          loc.classList.remove("hidden");
+          const name = document.getElementById("name").value;
+          const mobile = document.getElementById("mobile").value;
+          const location = document.getElementById("location").value;
+          const imageInput = document.getElementById("image");
+
+          // Validate inputs
+          if (
+            name.trim() === "" ||
+            mobile.trim() === "" ||
+            location.trim() === ""
+          ) {
+            alert("Please fill out all fields.");
+            document.getElementById("nameText").innerText = name;
+          }
+
+          var mobilePattern = /^[0-9]{10}$/;
+          if (!mobilePattern.test(mobile)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+          }
+
+          // Display the entered details
+          document.getElementById("nameText").innerText = name;
+          document.getElementById("mobileText").innerText = mobile;
+          document.getElementById("locationText").innerText = location;
+
+          // Handle the image preview if an image was uploaded
+          if (imageInput.files && imageInput.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              var uploadedImage = document.getElementById("uploadedImage");
+              uploadedImage.src = e.target.result;
+              uploadedImage.classList.remove("hidden");
+            };
+            reader.readAsDataURL(imageInput.files[0]);
+          }
+
+          // Use Nominatim API to get location details
+          var apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+            location
+          )}`;
+          fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+              if (data && data.length > 0) {
+                var lat = data[0].lat;
+                var lon = data[0].lon;
+                displayMap(lat, lon);
+                document.getElementById("latitudeText").innerText = lat;
+                document.getElementById("longitudeText").innerText = lon;
+              } else {
+                alert("Location not found. Please try again.");
+              }
+            })
+            .catch((error) => console.error("Error fetching location:", error));
+
+          // Show the location details section
+          document.getElementById("locationDisplay").classList.remove("hidden");
+          document.getElementById("locationDisplay").classList.add("fade-in");
+
+          // Reset the form
+          document.getElementById("locationForm").reset();
+          document.getElementById("imagePreview").classList.add("hidden"); // Hide image preview after reset
+        });
+
+      // Function to display map with Leaflet.js
+      function displayMap(lat, lon) {
+        document.getElementById("map").classList.remove("hidden");
+
+        map.setView([lat, lon], 15); // Zoom to 15 for a more local view
+
+        L.marker([lat, lon])
+          .addTo(map)
+          .bindPopup("Accident Location")
+          .openPopup();
+      }
+
+      // Image preview logic
+      document.getElementById("image").addEventListener("change", function () {
+        var imageInput = this;
+        if (imageInput.files && imageInput.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            var imagePreview = document.getElementById("imagePreview");
+            imagePreview.src = e.target.result;
+            imagePreview.classList.remove("hidden");
+          };
+          reader.readAsDataURL(imageInput.files[0]);
+        }
+      });
+
+      // Get current location and center map
+      document
+        .getElementById("currentLocationBtn")
+        .addEventListener("click", function () {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              function (position) {
+                var lat = position.coords.latitude;
+                var lon = position.coords.longitude;
+                displayMap(lat, lon);
+                document.getElementById("latitudeText").innerText = lat;
+                document.getElementById("longitudeText").innerText = lon;
+              },
+              function (error) {
+                alert("Error getting location: " + error.message);
+              }
+            );
+          } else {
+            alert("Geolocation is not supported by this browser.");
+          }
+        });
+    </script>
+  </body>
+</html>

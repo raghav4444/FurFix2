@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FurFix</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <link rel="stylesheet" href="style2.css"> -->
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<script>
+  const allLinks = document.querySelectorAll("a:link");
+allLinks.forEach(function (link) { link.addEventListener("click", function (e) {
+e.preventDefault();
+const href = link.getAttribute("href");
+// Scroll back to top if (href === "#")
+window.scrollTo({
+top: 0,
+behavior: "smooth",
+});
+if (href !== "#" && href.startsWith("#")) {
+  const sectionEl = document.querySelector(href); sectionEl.scrollintoView({behavior: "smooth" });
+}
+  });
+});
+</script>
+<!--body-->
+<body style="font-family: sans-serif;" class="scroll-smooth">
+  <!--header-maker-->
+<header class="flex-col"></header>
+<!--nav-bar-->
+
+  <nav class="h-20 flex justify-between items-center pl-6 pr-6 bg-slate-900 sticky top-0 z-50">
+    <div class="logo flex items-center">
+      <a href="#">
+
+        <div class="animalunity-logo text-white text-3xl font-bold ml-1 animate-logo">FURFIX</div>
+      </a>
+      <style>
+        @keyframes logoAnimation {
+          0% {
+            transform: scale(1);
+            opacity: 0.5;
+          }
+          50% {
+            transform: scale(1.2);
+            opacity: 1;
+            color: #facc15; 
+          }
+          100% {
+            transform: scale(1);
+            opacity: 0.5;
+          }
+        }
+
+        .animate-logo {
+          animation: logoAnimation 3s infinite;
+        }
+      </style>
+    </div>
+    <div class="middle-one flex gap-9 items-center animate-slide-in uppercase text-white ">
+      <a href="#" class="text-red-50 hover:bg-[#facc15 ] transition-transform duration-300 hover:scale-105 scroll-smooth">Home</a>
+      |
+      <a href="#Consultancy" class="hover:bg-[#facc15 ]transition-transform duration-300 hover:scale-105 scroll-smooth">Consultancy</a>
+      |
+      <a href="#Testimonial" class="text-red-50 hover:bg-[#facc15 ] transition-transform duration-300 hover:scale-105">Testimonial</a>
+      |
+      <a href="#Heroes" class="text-red-50 hover:bg-[#facc15 ] transition-transform duration-300 hover:scale-105">Heroes</a>
+      |
+      <a href="#FAQ's" class="text-red-50 hover:bg-[#facc15 ] transition-transform duration-300 hover:scale-105">FAQ's</a>
+    </div>
+    <div class="sign-in flex gap-4">
+      <a href="sign.html">
+        <button class="text-white font-bold py-2 px-6 rounded-full bg-gradient-to-r from-yellow-400 to-red-600 hover:from-yellow-500 hover:to-yellow-500 shadow-lg transform transition-transform duration-300 hover:scale-105  ">
+          Sign In
+        </button>
+      </a>
+      <a href="./sign_up.html">
+        <button class="text-white font-bold py-2 px-6 rounded-full bg-gray-800 hover:bg-gray-700 shadow-lg transform transition-transform duration-300">
+        Sign Up
+        </button>
+      </a>
+    </div>
+
+</nav>
+    <!-- //page number 1 -->
+<section>
+  <div class="bg-cover bg-center bg-no-repeat h-screen relative" style="background-image: url(./wallhaven-x11gyz.jpg), linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));">
+    <!-- Apply brightness filter only to the background -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+
+    <div class="flex justify-center items-center h-screen relative z-10">
+      <div class="text-center leading-7 animate-fade-in">
+        <!-- Text remains at full brightness (100%) -->
+        <h1 class="text-8xl text-white leading-tight font-bold ">
+          <span id="typed-text"></span>
+          <span id="cursor" class="text-white inline-flex ">🐕</span>
+        </h1>
+        <p class="text-3xl text-white leading-relaxed animate-slide-in">Save a life that has no language !</p>
+        <button class="text-white font-bold py-2 px-6 rounded bg-gradient-to-t from-yellow-400 to-red-600 shadow-2xl active:shadow-none mt-4 hover:shadow-md hover:animate-none hover:text-black">
+          <a href="./emergency.html" class="leading-7 hover:text-red-200">Emergency !</a>
+        </button>
+        <a href="donate.html" class="leading-7 hover:text-gray-400">
+        <button class="text-white font-bold py-2 px-6 rounded bg-gradient-to-t from-blue-950 to-blue-800 shadow-2xl active:shadow-none mt-4 hover:shadow-md hover:animate-none animate-pulse opacity-100">
+          Donate
+        </button>
+        </a>
+      </div>
+    </div>
+    </div>
+    <script>
+      const text = "Welcome to FurFix";
+      let index = 0;
+      const speed = 100; // typing speed in milliseconds
+
+      function typeText() {
+        if (index < text.length) {
+          if (text.charAt(index) === '') {
+        document.getElementById("typed-text").innerHTML += '<br>';
+          } else {
+        document.getElementById("typed-text").innerHTML += text.charAt(index);
+          }
+          index++;
+          setTimeout(typeText, speed);
+        }
+      }
+
+      window.onload = function() {
+        typeText();
+      };
+    </script>
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes slideIn {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+
+      
+
+      .animate-fade-in {
+        animation: fadeIn 2s ease-in-out;
+      }
+
+      .animate-slide-in {
+        animation: slideIn 1s ease-in-out;
+      }
+
+      
+    </style>
+  </div>
+</section>
+
+<!-- //page number 2 -->
+<div class="bg-slate-300 flex justify-center items-center min-h-screen ">
+  <div class="max-w-screen-xl mx-auto p-8">
+    <h1 class="text-4xl font-bold text-center mb-10 text-black">Adopt, Support, and Care for Our Furry Friends</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-blue-950 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:z-10">
+        <a href="main.html">
+          <img src="./adoptdog.jpg" alt="Adopt Dog" class="w-full h-auto rounded-t-lg">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-yellow-300 transition duration-300">Be a Hero: Donate to Save Our Furry Friends</h2>
+            <p class="text-md leading-relaxed text-white mt-2">
+              Open your heart and home! By adopting a pet or donating, you transform lives. Join us in giving love and second chances to furry friends waiting for their forever families.
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="bg-blue-950 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:z-10">
+        <a href="ngo.html">
+          <img src="./saveplant.jpg" alt="Support Animal Rescue" class="w-full h-auto rounded-t-lg">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-yellow-300 transition duration-300">Give Hope: Support Our Animal Rescue Mission</h2>
+            <p class="text-md leading-relaxed text-white mt-2">
+              Join us in giving a voice to the voiceless. Your generous donations help rescue, rehabilitate, and rehome pets in need, creating a brighter future for our furry friends.
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="bg-blue-950 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:z-10">
+        <a href="product.html">
+          <img src="./petfood.jpg" alt="Pet Products" class="w-full h-auto rounded-t-lg">
+          <div class="p-6">
+            <h2 class="text-2xl font-bold text-yellow-300 transition duration-300">Products for Happy Pets</h2>
+            <p class="text-md leading-relaxed text-white mt-2">
+              Explore our curated collection of pet essentials! From cozy beds to tasty treats, every item is designed to keep your furry friends happy, healthy, and tail-waggingly joyful.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--Cta Section-->
+
+<!-- //page number 3 -->
+<section id="Consultancy" style="background-color: #506076; border: 5px solid #506076;">
+    
+
+    <div class="bg-cover bg-center bg-no-repeat h-screen relative">
+  <div class="bg-cover bg-center bg-no-repeat h-screen relative ">
+    <sectiion class="flex w-full h-full">
+      
+      <div class=" w-1/2 h-full flex items-center justify-center bg-slate-300">
+        <div class="bg-slate-600 rounded-lg "> 
+        <div class="flex gap-10 bg-slate-800 p-10 rounded-lg ">
+          <div class=" flex flex-col gap-4 p-20">
+              <div class=" flex gap-4 w-10">
+                
+              <input type="text" class="transform transition-transform duration-300 hover:scale-105 hover:z-10 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Name">
+              <input type="email" class="transform transition-transform duration-300 hover:scale-105 hover:z-10 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Email">
+            </div>
+            
+            <div class="flex gap-4">
+              <input type="date" class="transform transition-transform duration-300 hover:scale-105 hover:z-10 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Date">
+                <input type="text" class="transform transition-transform duration-300 hover:scale-105 hover:z-10 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Duplicate">
+              </div>
+              
+              <div class="flex gap-4">
+                <input type="text" class="transform transition-transform duration-300 hover:scale-105 hover:z-10 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Additional Info">
+                <input type="text" class=" transform transition-transform duration-300 hover:scale-105 hover:z-10 p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600" placeholder="Mobile No.">
+              </div>
+              
+              <div class="flex gap-4">
+                
+                <button class="text-white font-bold py-2 px-6 rounded bg-gradient-to-t from-red-600 to-red-900 shadow-2xl active:shadow-none">Book Now</button>
+          
+                <button class="text-white font-bold py-2 px-6 rounded bg-gradient-to-t from-red-600 to-red-900 shadow-2xl active:shadow-none">Book for Date</button>
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+            <section class="min-h-screen bg-gray-200 flex flex-col w-full md:w-1/2">
+              <!-- First Section: Map of India -->
+                <div class="flex-1 flex items-center justify-center bg-gray-200 border-b-2 border-gray-300 relative">
+                <div class="text-center w-full">
+                  <iframe 
+                  id="map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14294.14568791714!2d80.331873!3d26.449923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c38f4b8b8b8b8%3A0x8b8b8b8b8b8b8b8!2sKanpur%2C%20Uttar%20Pradesh%2C%20India!5e0!3m2!1sen!2sin!4v1634119409672!5m2!1sen!2sin"
+                  width="100%"
+                  height="350"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy">
+                  </iframe>
+                  <button 
+                  id="current-location-btn" 
+                  class="absolute top-4 right-4 bg-blue-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:bg-blue-600 transition-colors duration-300">
+                  Get Current Location
+                  </button>
+                </div>
+                </div>
+
+                <script>
+                document.getElementById('current-location-btn').addEventListener('click', function() {
+                  if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(showPosition);
+                  } else {
+                  alert("Geolocation is not supported by this browser.");
+                  }
+                });
+
+                function showPosition(position) {
+                  const lat = position.coords.latitude;
+                  const lng = position.coords.longitude;
+                  const mapFrame = document.getElementById('map');
+                  const src = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14294.14568791714!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1634119409672!5m2!1sen!2sin`;
+                  mapFrame.src = src;
+                }
+                </script>
+            
+              <!-- Second Section: Insert Image Section -->
+              <div class="flex-1 flex items-center justify-center bg-gray-200">
+                <div class="text-center">
+                  <h2 class="text-4xl font-bold mb-4">Insert Image</h2>
+                  <input type="file" id="image-input" class="p-3 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-600" accept="image/*">
+                  <div class="mt-4">
+                    <img id="preview-image" class="max-w-full h-44 rounded-lg shadow-lg" alt="Image Preview">
+                  </div>
+                  <div class="mt-4">
+                    <button id="send-button" class="text-white font-bold py-2 px-6 rounded bg-gradient-to-t from-green-400 to-blue-500 shadow-lg active:shadow-none mr-2">Send</button>
+                    <button id="cancel-button" class="text-white font-bold py-2 px-6 rounded bg-gradient-to-t from-red-400 to-red-600 shadow-lg active:shadow-none">Cancel</button>
+                  </div>
+                </div>
+              </div>
+
+              <script>
+                document.getElementById('image-input').addEventListener('change', function(event) {
+                  const file = event.target.files[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                      document.getElementById('preview-image').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                });
+
+                document.getElementById('send-button').addEventListener('click', function() {
+                  alert('Image sent!');
+                  // Add your send functionality here
+                });
+
+                document.getElementById('cancel-button').addEventListener('click', function() {
+                  document.getElementById('image-input').value = '';
+                  document.getElementById('preview-image').src = '';
+                });
+              </script>
+              </section>
+            </section>
+
+<!-- TEstimonial Section  -->
+
+
+
+
+
+
+
+
+
+<section id="Testimonial" class="bg-cover bg-center bg-no-repeat h-screen relative ">
+
+
+  <!--testimonials-persons -->
+<section class="section-testimonials  bg-white group" style="display: grid; grid-template-columns: repeat(2, 1fr);" id="testimonials">
+
+
+  <div class="testimonials-container flex flex-col" style="background-color: #e5e7eb; justify-content: center; text-transform: uppercase;">
+
+    <span class="subheading" style="text-align: center; font-size: 3rem; font-weight: bold; text-transform: uppercase;">Testimonial</span>
+
+    <h2 class="heading-secondary text-pink-950" style="text-align: center; 
+    font-size: 1rem; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; text-transform: uppercase; transform: uppercase;">Once you try it, you never regret...</h2>
+
+    <div class="testimonials grid grid-cols-1 md:grid-cols-2 gap-8 p-6 ">
+      <div class="testimonial bg-gray-800 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between group-hover:blur-sm hover:!blur-none">
+        <img src="./download.jpeg" alt="Dave Bryson photo" class="testimonial-img rounded-lg w-full h-48 object-cover mb-4">
+        <blockquote class="testimonial-text mb-4">
+          I Rescuing an injured bird was the most fulfilling experience. It's incredible how a small act of kindness can make such a big difference in their lives!
+        </blockquote>
+        <p class="testimonial-name font-bold">&mdash; Sarah Thompson</p>
+      </div>
+
+      <div class="testimonial bg-gray-800 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between  group-hover:blur-sm hover:!blur-none">
+        <img src="./4-1_65ddd1ff40cb0.webp" alt="Ben Hadley photo" class="testimonial-img rounded-lg w-full h-48 object-cover mb-4">       
+  <blockquote class="testimonial-text mb-4"></blockquote>
+  Adopting a stray dog not only changed his life but mine as well. It’s amazing to see how love and care can transform a frightened animal into a joyful companion.
+        </blockquote>
+        <p class="testimonial-name font-bold">&mdash; Mark Robinson</p>
+      </div>
+
+      <div class="testimonial bg-gray-800 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between  group-hover:blur-sm hover:!blur-none">
+        <img src="./pexels-simon-robben-55958-614810.jpg" alt="Steve Miller photo" class="testimonial-img rounded-lg w-full h-48 object-cover mb-4">
+        <blockquote class="testimonial-text mb-4">
+          Volunteering at the animal shelter opened my eyes to the struggles these creatures face. It's heartwarming to be part of their journey to a better life!
+        </blockquote>
+        <p class="testimonial-name font-bold">&mdash; Emily Chen</p>
+      </div>
+
+      <div class="testimonial bg-gray-800 text-white p-6 rounded-lg shadow-lg flex flex-col justify-between  group-hover:blur-sm hover:!blur-none">
+        <img src="./images (1).jpeg" alt="Hannah Smith photo" class="testimonial-img rounded-lg w-full h-48 object-cover mb-4">
+        <blockquote class="testimonial-text mb-4">
+          Fostering kittens was such a rewarding experience. Watching them grow healthy and happy fills my heart with joy. It’s like magic in everyday life!
+        </blockquote>
+        <p class="testimonial-name font-bold">&mdash;  Jessica Lee</p>
+      </div>
+    </div>
+  </div>
+ <!--end 1 -->
+
+ <!--testimonials-photo-injuried animals -->
+ <section class="bg-slate-300">
+  <div class="subheading" style="text-align: center; font-size: 3rem; font-weight: bold; text-transform: uppercase;">we care</div>
+
+  <h2 class="heading-secondary text-pink-950" style="text-align: center; 
+  font-size: 1rem; font-weight: 600; line-height: 1.2; margin-bottom: 1rem; text-transform: uppercase; transform: uppercase;">your emotions...</h2>
+
+   <section class="section-gallery mt-[3rem]  p-4 h-auto " style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;" id="gallery">
+     
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2  ">
+      <img src="1.jpg" alt="photo of beautifully arranged food" class="w-full  rounded-lg shadow-lg h-56 " />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="2.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="3.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="4.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="5.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="6.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="7.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="8.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+    <div class="gallery-item transform transition-transform duration-500 hover:scale-105 p-2">
+      <img src="9.jpg" alt="photo of beautifully arranged food" class="w-full h-auto rounded-lg shadow-lg" />
+    </div>
+  </section>
+
+
+</section>
+
+   <!--end-2 -->
+</section>
+
+
+
+
+
+<!--Heroes SECTION-->
+<section id="Heroes" class="bg-slate-900 bg-cover bg-center bg-no-repeat h-screen relative">
+  <div class="animate-hero text-center py-12">
+    <h1 class="text-yellow-400 text-5xl font-bold uppercase mb-4">Today's Heroes</h1>
+    <p class="text-2xl font-semibold text-gray-200 uppercase">You can be the next Hero...</p>
+  </div>
+
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-hero {
+      animation: fadeInUp 2s ease-in-out;
+    }
+  </style>
+
+  <div id="carousel-container" style="background-color: rgba(0, 0, 0, 0.9); width: 800px; margin: 100px auto; border-radius: 8px; padding: 32px 48px; display: flex; align-items: center; gap: 86px; position: relative; overflow: hidden;" class="carousel-container mx-auto mt-40">
+
+    <!-- Carousel Images -->
+    <img id="carousel-image" style="height: 200px; width: auto; border-radius: 8px; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); transition: all 0.8s ease-in-out;" src="popu.jpg" alt="Hero Image" />
+
+    <!-- Testimonial Text -->
+    <blockquote class="testimonial">
+      <p id="testimonial-text" style="font-size: 18px; font-weight: 500; line-height: 1.5; margin-bottom: 32px; color: #e6fcf5; transition: opacity 0.8s ease-in-out;" class="testimonial-text">
+        We deeply appreciate Rahul for his compassionate act of helping an injured dog after visiting our website. Your kindness and willingness to take action make a significant difference in the lives of animals. Thank you!
+      </p>
+      <p id="testimonial-author" style="font-size: 14px; margin-bottom: 4px; color: #506076; transition: opacity 0.8s ease-in-out;" class="testimonial-author">Rahul Singh</p>
+      <p id="testimonial-job" style="font-size: 12px; color: #506076; transition: opacity 0.8s ease-in-out;" class="testimonial-job">Senior Product Manager As A Society Helper</p>
+    </blockquote>
+
+    <!-- Left Button -->
+    <button id="left-btn" aria-label="Previous Slide" style=" left: 25px; top: 50%; transform: translate(-50%, -50%); background-color: #fff; border: none; height: 40px; width: 40px; position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); cursor: pointer; overflow: visible; z-index: 2" class="btn btn--left hover-animate  ">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-icon" style="height: 24px; width: 24px; stroke: #506076;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+
+    <!-- Right Button -->
+    <button id="right-btn" aria-label="Next Slide" style="  right: 25px; top: 50%; transform: translate(50%, -50%); background-color: #fff; border: none; height: 40px; width: 40px; position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); cursor: pointer; overflow: visible; z-index: 2;" class="btn btn--right hover-animate">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-icon" style="height: 24px; width: 24px; stroke: #506076;">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+
+    <!-- Dots -->
+    <div style="display: flex; gap: 12px; position: absolute; left: 50%; transform: translate(-50%, 32px); bottom: 0;" class="dots">
+      <button style="background-color: #506076;" class="dot dot--fill" data-index="0">&nbsp;</button>
+      <button class="dot" data-index="1">&nbsp;</button>
+      <button class="dot" data-index="2">&nbsp;</button>
+      <button class="dot" data-index="3">&nbsp;</button>
+    </div>
+  </div>
+</section>
+
+<!-- JavaScript for Enhanced Carousel -->
+<script>
+  const testimonials = [
+    {
+      img: 'popu.jpg',
+      text: 'We deeply appreciate Rahul for his compassionate act of helping an injured dog after visiting our website. Your kindness and willingness to take action make a significant difference in the lives of animals. Thank you!',
+      author: 'Rahul Singh',
+      job: 'Senior Product Manager As A Society Helper'
+    },
+    {
+      img: 'teri_bhabhi.jpg',
+      text: 'We want to express our heartfelt gratitude to Priti for her kindness in helping an injured dog after visiting our website. Your compassion truly makes a difference in the lives of animals. Thank you!',
+      author: 'Priti',
+      job: 'Government Teacher'
+    },
+    {
+      img: 'dsa_teacher.jpg',
+      text: 'We wholeheartedly thank Raghav for his compassionate act of helping an injured cat after visiting our website. Your selflessness and dedication to animal welfare make a significant difference. We truly appreciate you!',
+      author: 'Raghav',
+      job: 'Buisness Man'
+    },
+    {
+      img: 'z.jpg',
+      text: ' We extend our heartfelt gratitude to Akash for his compassionate act of helping an injured cow after visiting our website. Your dedication to animal welfare truly makes a positive impact. Thank you!',
+      author: 'Akash',
+      job: 'Event Organizer'
+    }
+  ];
+
+  let currentSlide = 0;
+  let slideInterval;
+
+  const carouselImage = document.getElementById('carousel-image');
+  const testimonialText = document.getElementById('testimonial-text');
+  const testimonialAuthor = document.getElementById('testimonial-author');
+  const testimonialJob = document.getElementById('testimonial-job');
+  const dots = document.querySelectorAll('.dot');
+
+  function updateCarousel(slideIndex) {
+    const { img, text, author, job } = testimonials[slideIndex];
+    
+    // Fade-out current content
+    carouselImage.style.opacity = '0';
+    testimonialText.style.opacity = '0';
+    testimonialAuthor.style.opacity = '0';
+    testimonialJob.style.opacity = '0';
+
+    setTimeout(() => {
+      // Update content
+      carouselImage.src = img;
+      testimonialText.innerText = text;
+      testimonialAuthor.innerText = author;
+      testimonialJob.innerText = job;
+      
+      // Fade-in new content
+      carouselImage.style.opacity = '1';
+      testimonialText.style.opacity = '1';
+      testimonialAuthor.style.opacity = '1';
+      testimonialJob.style.opacity = '1';
+    }, 500);
+
+    // Update dots
+    dots.forEach(dot => dot.classList.remove('dot--fill'));
+    dots[slideIndex].classList.add('dot--fill');
+  }
+
+  document.getElementById('right-btn').addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % testimonials.length;
+    updateCarousel(currentSlide);
+    resetSlideInterval();
+  });
+
+  document.getElementById('left-btn').addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + testimonials.length) % testimonials.length;
+    updateCarousel(currentSlide);
+    resetSlideInterval();
+  });
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', (event) => {
+      const slideIndex = parseInt(event.target.dataset.index);
+      currentSlide = slideIndex;
+      updateCarousel(currentSlide);
+      resetSlideInterval();
+    });
+  });
+
+  // Auto-slide every 5 seconds
+  function startSlideInterval() {
+    slideInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % testimonials.length;
+      updateCarousel(currentSlide);
+    }, 5000);
+  }
+
+  function resetSlideInterval() {
+    clearInterval(slideInterval);
+    startSlideInterval();
+  }
+
+  // Start the auto-slide interval
+  startSlideInterval();
+
+  // Pause on hover
+  const carouselContainer = document.getElementById('carousel-container');
+  carouselContainer.addEventListener('mouseenter', () => {
+    clearInterval(slideInterval);
+  });
+
+  carouselContainer.addEventListener('mouseleave', () => {
+    startSlideInterval();
+  });
+
+  // Initialize the carousel
+  startSlideInterval();
+</script>
+
+
+
+
+<!--SECTION FAQ-->
+<section  id="FAQ's" class=" faq-section py-12 bg-slate-300">
+
+  <div>
+  <div style="font-family: Arial, sans-serif; padding: 20px;">
+    
+    <div style="background-color: #0c4b68; color: rgb(0, 0, 0); padding: 20px; text-align: center;">
+        <img src="" style="height: 40px; vertical-align: middle;">
+        <h1 class="font-bold text-2xl font-sans text-white">We’re here to help</h1>
+        <div style="text-align: center; padding: 20px;">
+          <div style="display: flex; justify-content: center; position: relative;">
+
+            <input type="text" placeholder="Search our articles" style="padding: 10px; width: 60%; border: 1px solid #ccc; border-radius: 5px;"
+            >
+            <svg style=" position: absolute; top:25%; right: 20.5%;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+            </svg>
+          </div>
+          
+      </div>
+    </div>
+
+    
+
+  
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+    
+        <div class="cursor-pointer" style="background-color: #f4f4f4; padding: 20px; margin: 10px; width: 30%; text-align: center; border-radius: 10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <svg style="width: 32px; height:32px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          </svg>
+          <h3>My account</h3>
+          <p style='color:black;'>Create and manage your Sendinblue account</p>
+        </div>
+
+        <div class="cursor-pointer" style="background-color: #f4f4f4; padding: 20px; margin: 10px; width: 30%; text-align: center; border-radius: 10px; transition: transform 0.3s ease; justify-content: center;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <svg style="width: 32px; height:32px; justify-self:center;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 0 1-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 0 0 1.183 1.981l6.478 3.488m8.839 2.51-4.66-2.51m0 0-1.023-.55a2.25 2.25 0 0 0-2.134 0l-1.022.55m0 0-4.661 2.51m16.5 1.615a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V8.844a2.25 2.25 0 0 1 1.183-1.981l7.5-4.039a2.25 2.25 0 0 1 2.134 0l7.5 4.039a2.25 2.25 0 0 1 1.183 1.98V19.5Z" />
+          </svg>
+          
+          <h3>Email campaigns</h3>
+          <p style='color:black;'>Engage your contacts using the best mobile-friendly email design tools</p>
+        </div>
+
+        <div class="cursor-pointer" style="background-color: #f4f4f4; padding: 20px; margin: 10px; width: 30%; text-align: center; border-radius: 10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <svg style="width: 28px; height:28px;"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+          </svg>
+          
+          
+          <h3>SMS campaigns</h3>
+          <p>Enhance your marketing with text message (SMS) campaigns</p>
+        </div>
+
+        <div class="cursor-pointer" style="background-color: #f4f4f4; padding: 20px; margin: 10px; width: 30%; text-align: center; border-radius: 10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <svg style="width: 32px; height:32px;" xmlns xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
+          </svg>
+          
+          <h3>Transactional emails</h3>
+          <p style='color:black;'>Send one-to-one emails with optimal deliverability</p>
+        </div>
+
+        <div class="cursor-pointer" style="background-color: #f4f4f4; padding: 20px; margin: 10px; width: 30%; text-align: center; border-radius: 10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <svg style="width: 28px; height:28px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+          </svg>
+          
+          <h3>Contacts</h3>
+          <p style='color:black;'>Manage and segment your contacts for perfectly targeted messages</p>
+        </div>
+
+        <div class="cursor-pointer" style="background-color: #f4f4f4; padding: 20px; margin: 10px; width: 30%; text-align: center; border-radius: 10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <svg style="width: 32px; height:32px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+          </svg>
+          
+          <h3>Automation</h3>
+          <p style='color:black;'>Automate your marketing with emails, SMS, and website tracking</p>
+        </div>
+    </div>
+</div>
+</div>
+
+  <h2 class="text-4xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+
+    <div class="container mx-auto px-4">
+
+      <div  class="accordion space-y-4">
+      <div class="item p-6 rounded-lg shadow-md cursor-pointer bg-white" id="toggleDiv1">
+        <div class="flex justify-between items-center" >
+          <p class="text-xl font-semibold text-black">How can I help save animals in my community?</p>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="rotate-90 icon w-6 h-6 arrow-key1" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+          <style>
+            .arrow-key1 {
+              transition: transform 0.3s ease-in-out;
+            }
+            .rotate-18 {
+              transform: rotate(0deg);
+            }
+          </style>
+          <script>
+            const toggleDiv1= document.getElementById('toggleDiv1');
+            const arrowKey1 = document.querySelector('.arrow-key1');
+          
+            toggleDiv1.addEventListener('click', function() {
+              arrowKey1.classList.toggle('rotate-18');
+            });
+          </script>
+        </div>
+        <div class="hidden-box mt-4 " style="display: none;">
+            <p class="text-gray-600">There are many ways to get involved! You can volunteer at local shelters, organize fundraising events, or even foster animals in need. Every action, big or small, makes a difference!</p>
+          </div>
+      </div>
+      <div class="item bg-white p-6 rounded-lg shadow-md cursor-pointer open " id="toggleDiv">
+        <div class="flex justify-between items-center ">
+          <p class="text-xl font-semibold text-black">What types of animals do you rescue?</p>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="icon w-6 h-6 arrow-key" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+          <style>
+            .arrow-key {
+              transition: transform 0.3s ease-in-out;
+            }
+            .rotate-180 {
+              transform: rotate(90deg);
+            }
+            </style>
+          <script>
+            const toggleDiv = document.getElementById('toggleDiv');
+            const arrowKey = document.querySelector('.arrow-key');
+            
+            toggleDiv.addEventListener('click', function() {
+              arrowKey.classList.toggle('rotate-180');
+            });
+          </script>
+        </div>
+        
+        <div class="hidden-box mt-4 text-black" style="display: block;">
+          <p class="text-gray-600">We rescue a variety of animals, including dogs, cats, rabbits, and more. Our goal is to provide care and find loving homes for all animals in need.</p>
+        </div>
+      </div>
+      <div class="item bg-white p-6 rounded-lg shadow-md cursor-pointer" id="toggleDiv3">
+        <div class="flex justify-between items-center">
+          <p class="text-xl font-semibold text-black">How can I adopt an animal?</p>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class=" rotate-90 icon w-6 h-6 arrow-key3" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+          <style>
+            .arrow-key3 {
+              transition: transform 0.3s ease-in-out;
+            }
+            .rotate-18 {
+              transform: rotate(0deg);
+            }
+            </style>
+          <script>
+            const toggleDiv3 = document.getElementById('toggleDiv3');
+            const arrowKey3 = document.querySelector('.arrow-key3');
+          
+            toggleDiv3.addEventListener('click', function() {
+              arrowKey3.classList.toggle('rotate-18');
+            });
+          </script>
+          
+        </div>
+        <div class="hidden-box mt-4 text-black" style="display: none;">
+          <p class="  text-gray-600">To adopt an animal, please visit our adoption page where you can fill out an application. We conduct a home visit and interview to ensure a perfect match!</p>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</section>
+
+
+<script>
+  document.querySelectorAll('.accordion .item').forEach(item => {
+    item.addEventListener('click', () => {
+      const hiddenBox = item.querySelector('.hidden-box');
+      const isOpen = hiddenBox.style.display === 'block';
+
+      document.querySelectorAll('.accordion .item .hidden-box').forEach(box => {
+        box.style.display = 'none';
+        box.style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        hiddenBox.style.display = 'block';
+        hiddenBox.style.maxHeight = hiddenBox.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+<style>
+  .accordion .item .hidden-box {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+</style>
+
+
+
+<!--footer-->
+
+<footer class="bg-slate-900 text-white py-8 animate-footer">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap justify-between">
+      <!-- About Us -->
+      <div class="w-full md:w-1/3 mb-6 md:mb-0 animate-fade-in">
+        <h3 class="text-2xl font-bold mb-4 text-yellow-400">About Us</h3>
+        <p class="text-gray-300">FurFix is dedicated to helping animals in need. Join us in making a difference in the lives of our furry friends.</p>
+      </div>
+      <!-- Quick Links -->
+      <div class="w-full md:w-1/3 mb-6 md:mb-0 animate-fade-in">
+        <h3 class="text-2xl font-bold mb-4 text-yellow-400">Quick Links</h3>
+        <ul class="text-gray-300">
+          <li class="mb-2"><a href="#" class="hover:text-yellow-400 transition-colors duration-300">Home</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-yellow-400 transition-colors duration-300">About</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-yellow-400 transition-colors duration-300">Services</a></li>
+          <li class="mb-2"><a href="#" class="hover:text-yellow-400 transition-colors duration-300">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Contact Us -->
+      <div class="w-full md:w-1/3 animate-fade-in">
+        <h3 class="text-2xl font-bold mb-4 text-yellow-400">Contact Us</h3>
+        <p class="text-gray-300 mb-2">Email: <a href="mailto:support@furfix.com" class="hover:text-yellow-400 transition-colors duration-300">furfix4444@gmail.com</a></p>
+        <p class="text-gray-300 mb-2">Phone: <a href="tel:+1234567890" class="hover:text-yellow-400 transition-colors duration-300">+1 234 567 890</a></p>
+        <p class="text-gray-300">Address:101 High Street colony , new Delhi</p>
+      </div>
+    </div>
+    <div class="mt-8 text-center text-gray-400 animate-fade-in">
+      <p>&copy; 2024 FurFix. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  @keyframes footerAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-footer {
+    animation: footerAnimation 1s ease-in-out;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  footer {
+    background-color: #1e293b; /* Darker slate for a modern look */
+  }
+
+  h3 {
+    color: #fbbf24; /* Bright yellow for headings */
+  }
+
+  p, a {
+    color: #d1d5db; /* Lighter gray text for readability */
+  }
+
+  a:hover {
+    color: #fbbf24; /* Hover effect to match the theme */
+  }
+
+  .transition-colors {
+    transition: color 0.3s ease;
+  }
+</style>
+
+
+</style>
+
+</body>
+</html>

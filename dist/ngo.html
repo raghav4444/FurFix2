@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FurFix</title>
+ 
+
+  
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    #map { height: 400px; }
+    body { background-color: #1a202c; color: #cbd5e0; }
+    .contact-form { background-color: #2d3748; }
+    input, textarea { background-color: #4a5568; color: #cbd5e0; }
+    input::placeholder, textarea::placeholder { color: #a0aec0; }
+  </style>
+</head>
+<body class="font-sans m-0 p-0">
+
+<nav class="bg-gray-900 text-white p-4 animate__animated animate__fadeInDown">
+  <div class="container mx-auto flex justify-between items-center">
+    <div class="text-lg font-bold">NGO Page</div>
+    <ul class="hidden md:flex space-x-4">
+      <li><a href="#" class="hover:underline">Home</a></li>
+      <li><a href="#" class="hover:underline">About Us</a></li>
+      <li><a href="#" class="hover:underline">Our Work</a></li>
+      <li><a href="#" class="hover:underline">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container mx-auto"></div>
+<h2 class="text-2xl mb-4 font-semibold text-gray-300 text-center pt-8 animate__animated animate__fadeIn">Our NGOs</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pr-10 pl-10">
+  <div class="bg-gray-800 p-6 rounded-lg shadow-md animate__animated animate__fadeInUp hover:bg-gray-700">
+    <h3 class="text-xl font-semibold text-gray-300">NGO 1</h3>
+    <p class="text-gray-400">Location: Kanpur</p>
+    <p class="text-gray-400">Description: NGO 1 is focused on providing education to underprivileged children in Kanpur.</p>
+  </div>
+  <div class="bg-gray-800 p-6 rounded-lg shadow-md animate__animated animate__fadeInUp hover:bg-gray-700">
+    <h3 class="text-xl font-semibold text-gray-300">NGO 2</h3>
+    <p class="text-gray-400">Location: Delhi</p>
+    <p class="text-gray-400">Description: NGO 2 works on environmental conservation projects in Delhi.</p>
+  </div>
+  <div class="bg-gray-800 p-6 rounded-lg shadow-md animate__animated animate__fadeInUp hover:bg-gray-700">
+    <h3 class="text-xl font-semibold text-gray-300">NGO 3</h3>
+    <p class="text-gray-400">Location: Mumbai</p>
+    <p class="text-gray-400">Description: NGO 3 provides healthcare services to the underprivileged in Mumbai.</p>
+  </div>
+</div>
+    </div>
+    <!-- Add more NGO cards as needed -->
+  </div>
+</div>
+<div class="container mx-auto p-5">
+  <div class="map w-full h-96 mb-5" id="map"></div>
+
+  <div class="contact-form max-w-lg mx-auto p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl mb-4 font-semibold text-gray-300">Contact Us</h2>
+    <form action="#" method="post">
+
+      <div class="mb-4">
+        <label for="name" class="block text-gray-400 mb-2">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required class="w-full p-2 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-gray-400 mb-2">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required class="w-full p-2 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-green-500">
+      </div>
+      <div class="mb-4">
+        <label for="message" class="block text-gray-400 mb-2">Your Message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required class="w-full p-2 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+      </div>
+      <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Send Message</button>
+    </form>
+  </div>
+</div>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var map = L.map('map').setView([26.8467, 80.9462], 10); // Initial coordinates
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Array of NGO data
+    var ngos = [
+      { name: "NGO 1", coords: [26.8467, 80.9462], description: "Kanpur", phone: "1234567890", email: "ngo1@example.com" },
+      { name: "NGO 2", coords: [28.7041, 77.1025], description: "Delhi", phone: "0987654321", email: "ngo2@example.com" },
+      { name: "NGO 3", coords: [19.0760, 72.8777], description: "Mumbai", phone: "1122334455", email: "ngo3@example.com" },
+      { name: "NGO 4", coords: [13.0827, 80.2707], description: "Chennai", phone: "2233445566", email: "ngo4@example.com" },
+      { name: "NGO 5", coords: [22.5726, 88.3639], description: "Kolkata", phone: "3344556677", email: "ngo5@example.com" },
+      { name: "NGO 6", coords: [23.0225, 72.5714], description: "Ahmedabad", phone: "4455667788", email: "ngo6@example.com" },
+      { name: "NGO 7", coords: [17.3850, 78.4867], description: "Hyderabad", phone: "5566778899", email: "ngo7@example.com" },
+      { name: "NGO 8", coords: [12.9716, 77.5946], description: "Bangalore", phone: "6677889900", email: "ngo8@example.com" },
+      { name: "NGO 9", coords: [18.5204, 73.8567], description: "Pune", phone: "7788990011", email: "ngo9@example.com" },
+      { name: "NGO 10", coords: [21.1702, 72.8311], description: "Surat", phone: "8899001122", email: "ngo10@example.com" },
+      { name: "NGO 11", coords: [26.9124, 75.7873], description: "Jaipur", phone: "9900112233", email: "ngo11@example.com" },
+      { name: "NGO 12", coords: [30.7333, 76.7794], description: "Chandigarh", phone: "0011223344", email: "ngo12@example.com" },
+      { name: "NGO 13", coords: [15.2993, 74.1240], description: "Goa", phone: "1122334455", email: "ngo13@example.com" },
+      { name: "NGO 14", coords: [25.3176, 82.9739], description: "Varanasi", phone: "2233445566", email: "ngo14@example.com" },
+      { name: "NGO 15", coords: [24.5854, 73.7125], description: "Udaipur", phone: "3344556677", email: "ngo15@example.com" },
+      { name: "NGO 16", coords: [11.0168, 76.9558], description: "Coimbatore", phone: "4455667788", email: "ngo16@example.com" },
+      { name: "NGO 17", coords: [22.3072, 73.1812], description: "Vadodara", phone: "5566778899", email: "ngo17@example.com" },
+      { name: "NGO 18", coords: [23.2599, 77.4126], description: "Bhopal", phone: "6677889900", email: "ngo18@example.com" },
+      { name: "NGO 19", coords: [26.4499, 74.6399], description: "Ajmer", phone: "7788990011", email: "ngo19@example.com" },
+      { name: "NGO 20", coords: [27.1767, 78.0081], description: "Agra", phone: "8899001122", email: "ngo20@example.com" }
+    ];
+    ngos.push(
+      { name: "NGO 21", coords: [28.6139, 77.2090], description: "New Delhi", phone: "1231231234", email: "ngo21@example.com" },
+      { name: "NGO 22", coords: [22.7196, 75.8577], description: "Indore", phone: "2342342345", email: "ngo22@example.com" },
+      { name: "NGO 23", coords: [25.5941, 85.1376], description: "Patna", phone: "3453453456", email: "ngo23@example.com" },
+      { name: "NGO 24", coords: [23.3441, 85.3096], description: "Ranchi", phone: "4564564567", email: "ngo24@example.com" },
+      { name: "NGO 25", coords: [26.1445, 91.7362], description: "Guwahati", phone: "5675675678", email: "ngo25@example.com" },
+      { name: "NGO 26", coords: [21.1458, 79.0882], description: "Nagpur", phone: "6786786789", email: "ngo26@example.com" },
+      { name: "NGO 27", coords: [23.1765, 75.7885], description: "Ujjain", phone: "7897897890", email: "ngo27@example.com" },
+      { name: "NGO 28", coords: [25.4358, 81.8463], description: "Prayagraj", phone: "8908908901", email: "ngo28@example.com" },
+      { name: "NGO 29", coords: [22.3072, 73.1812], description: "Vadodara", phone: "9019019012", email: "ngo29@example.com" },
+      { name: "NGO 30", coords: [23.0225, 72.5714], description: "Ahmedabad", phone: "0120120123", email: "ngo30@example.com" },
+      { name: "NGO 31", coords: [19.2183, 72.9781], description: "Thane", phone: "1231231234", email: "ngo31@example.com" },
+      { name: "NGO 32", coords: [15.3173, 75.7139], description: "Hubli", phone: "2342342345", email: "ngo32@example.com" },
+      { name: "NGO 33", coords: [24.5854, 73.7125], description: "Udaipur", phone: "3453453456", email: "ngo33@example.com" },
+      { name: "NGO 34", coords: [22.5726, 88.3639], description: "Kolkata", phone: "4564564567", email: "ngo34@example.com" },
+      { name: "NGO 35", coords: [26.9124, 75.7873], description: "Jaipur", phone: "5675675678", email: "ngo35@example.com" },
+      { name: "NGO 36", coords: [30.7333, 76.7794], description: "Chandigarh", phone: "6786786789", email: "ngo36@example.com" },
+      { name: "NGO 37", coords: [15.2993, 74.1240], description: "Goa", phone: "7897897890", email: "ngo37@example.com" },
+      { name: "NGO 38", coords: [25.3176, 82.9739], description: "Varanasi", phone: "8908908901", email: "ngo38@example.com" },
+      { name: "NGO 39", coords: [11.0168, 76.9558], description: "Coimbatore", phone: "9019019012", email: "ngo39@example.com" },
+      { name: "NGO 40", coords: [23.2599, 77.4126], description: "Bhopal", phone: "0120120123", email: "ngo40@example.com" }
+    );
+
+    // Add markers for each NGO
+    ngos.forEach(function(ngo) {
+      L.marker(ngo.coords).addTo(map)
+        .bindPopup(`<b>${ngo.name}</b><br>${ngo.description}<br>Phone: ${ngo.phone}<br>Email: ${ngo.email}`);
+    });
+  });
+</script>
+   
+
+    // Add markers for each NGO
+    ngos.forEach(function(ngo) {
+      L.marker(ngo.coords).addTo(map)
+        .bindPopup(`<b>${ngo.name}</b><br>${ngo.description}`)
+        .openPopup();
+    });
+  });
+</script>
+
+</body>
+</html>
